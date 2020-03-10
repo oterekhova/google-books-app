@@ -8,7 +8,8 @@
         android:id="@+id/book_image"
         android:layout_width="60dp"
         android:layout_height="86dp"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:contentDescription="@string/image" />
 
     <TextView
         android:id="@+id/book_title"

@@ -1,8 +1,10 @@
 package com.example.googlebookapp.presentation.main
 
 import android.os.Bundle
+import android.view.Menu
 import com.example.googlebookapp.R
 import com.example.googlebookapp.presentation.common.BaseView
+import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatActivity
 
 class MainActivity : MvpAppCompatActivity(), BaseView {
@@ -11,6 +13,7 @@ class MainActivity : MvpAppCompatActivity(), BaseView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
+            setSupportActionBar(toolbar)
             displaySearchFragment()
         }
     }
@@ -21,6 +24,11 @@ class MainActivity : MvpAppCompatActivity(), BaseView {
         fragmentTransition
             .replace(R.id.search_frame, searchFragment)
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
 }
