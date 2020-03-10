@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface BookModel {
 
-    fun searchBooks(searchValue: String): Single<ArrayList<BookEntity>>
+    fun searchBooks(searchValue: String): Single<List<BookEntity>>
 
 }

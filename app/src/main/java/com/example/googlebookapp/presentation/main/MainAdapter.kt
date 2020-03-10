@@ -1,6 +1,6 @@
 package com.example.googlebookapp.presentation.main
 
-import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.googlebookapp.R
 import com.example.googlebookapp.data.entity.BookEntity
 import com.example.googlebookapp.data.entity.BookInfoEntity
-import kotlinx.android.synthetic.main.item_book_list.view.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_book.view.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
+
 
 class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
@@ -19,7 +21,7 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.MainV
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_book_list,
+                R.layout.item_book,
                 parent,
                 false
             )
@@ -35,10 +37,13 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.MainV
     inner class MainViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(book: BookInfoEntity) {
-            view.book_image.text = book.imageLinks.imageLink
-            view.book_authors.text = "${book.authors}"
+            view.book_authors.text = book.authors().joinToString(separator = ", ")
             view.book_desc.text = book.description
             view.book_title.text = book.title
+            Picasso.with(view.context)
+                .load(Uri.parse(book.imageLinks.imageLink))
+                .error(R.drawable.book_image)
+                .into(view.book_image)
         }
 
     }

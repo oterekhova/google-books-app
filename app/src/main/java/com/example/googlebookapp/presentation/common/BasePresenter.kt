@@ -13,10 +13,10 @@ abstract class BasePresenter<V : BaseView> : MvpPresenter<V>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
-    protected fun Disposable.unsibscribeOnDestroy() {
+    protected fun Disposable.unsubscribeOnDestroy() {
         compositeDisposable.add(this)
     }
 

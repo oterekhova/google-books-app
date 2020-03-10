@@ -9,7 +9,7 @@ import javax.inject.Inject
 class BookModelImpl @Inject constructor(private val repository: BookRepository) :
     BookModel {
 
-    override fun searchBooks(searchValue: String): Single<ArrayList<BookEntity>> {
+    override fun searchBooks(searchValue: String): Single<List<BookEntity>> {
         return repository.request(searchValue)
     }
 

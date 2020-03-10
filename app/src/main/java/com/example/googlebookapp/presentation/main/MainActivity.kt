@@ -1,23 +1,26 @@
 package com.example.googlebookapp.presentation.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.googlebookapp.R
-import com.example.googlebookapp.data.entity.BookEntity
-import com.example.googlebookapp.domain.model.BookModel
-import com.example.googlebookapp.presentation.di.Injector
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
+import com.example.googlebookapp.presentation.common.BaseView
+import moxy.MvpAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity(), BaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        if (savedInstanceState == null) {
+            displaySearchFragment()
+        }
+    }
+
+    private fun displaySearchFragment() {
+        val searchFragment = SearchFragment.newInstance()
+        val fragmentTransition = supportFragmentManager.beginTransaction()
+        fragmentTransition
+            .replace(R.id.search_frame, searchFragment)
+            .commit()
     }
 
 }
