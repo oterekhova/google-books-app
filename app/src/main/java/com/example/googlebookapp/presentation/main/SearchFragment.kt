@@ -2,9 +2,8 @@ package com.example.googlebookapp.presentation.main
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.googlebookapp.R
 import com.example.googlebookapp.data.entity.BookEntity
@@ -54,15 +53,37 @@ class SearchFragment : BaseFragment(), MainView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         book_recycler.apply {
             layoutManager = LinearLayoutManager(requireActivity())
             adapter = mainAdapter
         }
-        mainPresenter.loadData("Снегурочка")
     }
 
     override fun showData(book: List<BookEntity>) {
         mainAdapter.items = book
+    }
+
+    override fun onShowDataFailure(error: String) {
+        showMessage(error)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        menu?.let {
+            inflater?.inflate(R.menu.menu_main, menu)
+            val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    mainPresenter.loadData(query)
+                    return true
+                }
+            })
+        }
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

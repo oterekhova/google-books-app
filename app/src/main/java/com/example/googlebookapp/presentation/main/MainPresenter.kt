@@ -18,7 +18,7 @@ class MainPresenter @Inject constructor(private val bookModel: BookModel) :
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { viewState.showData(it) },
-                { logger.error("Error:", it) })
+                { viewState.onShowDataFailure(it.message.orEmpty()) })
             .unsubscribeOnDestroy()
     }
 
