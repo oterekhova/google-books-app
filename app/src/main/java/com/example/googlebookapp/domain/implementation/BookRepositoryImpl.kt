@@ -8,12 +8,12 @@ import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(private val api: GoogleApi) : BookRepository {
 
-    companion object {
-        const val KEY_VALUE: String = "AIzaSyAhE836RaDX8UU2G32Y0gESapfI0GoagoI"
+    override fun request(searchValue: String): Single<ArrayList<BookEntity>> {
+        return api.search(searchValue, KEY_VALUE).map { it.books }
     }
 
-    override fun request(searchValue: String): Single<List<BookEntity>> {
-        return api.search(searchValue, KEY_VALUE).map { it.books }
+    companion object {
+        const val KEY_VALUE: String = "AIzaSyAhE836RaDX8UU2G32Y0gESapfI0GoagoI"
     }
 
 }

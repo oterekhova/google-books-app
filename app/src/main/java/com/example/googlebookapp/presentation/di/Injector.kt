@@ -9,7 +9,10 @@ import com.example.googlebookapp.presentation.di.component.DaggerAppComponent
 object Injector {
 
     lateinit var appComponent: AppComponent
+        private set
+
     lateinit var activityComponent: ActivityComponent
+        private set
 
     fun init() {
         appComponent = DaggerAppComponent.create()

@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface BookRepository {
 
-    fun request(searchValue: String): Single<List<BookEntity>>
+    fun request(searchValue: String): Single<ArrayList<BookEntity>>
 
 }

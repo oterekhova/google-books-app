@@ -4,19 +4,29 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.googlebookapp.R
 import com.example.googlebookapp.data.entity.BookEntity
 import com.example.googlebookapp.data.entity.BookInfoEntity
+import com.example.googlebookapp.presentation.util.DiffUtilCallback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_book.view.*
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 
 class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
-    var items: List<BookEntity> by Delegates.observable(emptyList()) { _, _, _ -> notifyDataSetChanged() }
+    var items: ArrayList<BookEntity> = ArrayList()
+
+    fun updateData(newList: ArrayList<BookEntity>) {
+        val diffUtilCallback = DiffUtilCallback(items, newList)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
+
+        items.clear()
+        items.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
@@ -37,13 +47,13 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.MainV
     inner class MainViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(book: BookInfoEntity) {
-            view.book_authors.text = book.authors().joinToString(separator = ", ")
-            view.book_desc.text = book.description
-            view.book_title.text = book.title
+            view.bookAuthors.text = book.authors().joinToString(separator = ", ")
+            view.bookDesc.text = book.description
+            view.bookTitle.text = book.title
             Picasso.with(view.context)
                 .load(Uri.parse(book.imageLinks.imageLink))
                 .error(R.drawable.book_image)
-                .into(view.book_image)
+                .into(view.bookImage)
         }
 
     }

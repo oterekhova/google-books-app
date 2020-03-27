@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class BookInfoEntity constructor(
     @SerializedName("title") var title: String,
-    @SerializedName("authors") var authors: List<String>,
+    @SerializedName("authors") var authors: ArrayList<String>,
     @SerializedName("description") var description: String,
     @SerializedName("imageLinks") var imageLinks: ImageLinks
 ) {
 
-    fun authors(): List<String> {
+    fun authors(): ArrayList<String> {
         return if (authors.isNullOrEmpty()) {
             arrayListOf("Unknown authors")
         } else {
