@@ -12,8 +12,8 @@ class MainActivity : MvpAppCompatActivity(), BaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
         if (savedInstanceState == null) {
-            setSupportActionBar(toolbar)
             displaySearchFragment()
         }
     }
