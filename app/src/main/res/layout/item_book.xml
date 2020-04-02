@@ -8,8 +8,8 @@
         android:id="@+id/bookImage"
         android:layout_width="60dp"
         android:layout_height="86dp"
-        android:layout_margin="8dp"
         android:layout_centerVertical="true"
+        android:layout_margin="8dp"
         android:contentDescription="@string/image" />
 
     <TextView
@@ -17,8 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_toEndOf="@+id/bookImage"
         android:layout_toStartOf="@id/likeButton"
+        android:layout_toEndOf="@+id/bookImage"
         android:text="@string/title"
         android:textSize="24sp" />
 
@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bookTitle"
         android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/bookImage"
         android:layout_toStartOf="@id/likeButton"
+        android:layout_toEndOf="@+id/bookImage"
         android:text="@string/author"
         android:textSize="12sp" />
 
@@ -39,11 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bookAuthors"
         android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/bookImage"
         android:layout_toStartOf="@id/likeButton"
-        android:text="@string/description"
-        android:maxLines="2"
+        android:layout_toEndOf="@+id/bookImage"
         android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/description"
         android:textSize="12sp" />
 
     <ToggleButton
@@ -53,8 +53,8 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_margin="18dp"
-        android:background="@drawable/favorite_border_black"
-        android:textOn=""
-        android:textOff="" />
+        android:background="@drawable/favorite_selector"
+        android:textOff=""
+        android:textOn="" />
 
 </RelativeLayout>

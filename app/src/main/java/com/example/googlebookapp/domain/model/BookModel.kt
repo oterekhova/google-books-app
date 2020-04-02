@@ -7,4 +7,8 @@ interface BookModel {
 
     fun searchBooks(searchValue: String): Single<ArrayList<BookEntity>>
 
+    fun addToFavourite(bookId: String)
+
+    fun removeFromFavourite(bookId: String)
+
 }

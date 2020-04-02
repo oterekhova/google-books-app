@@ -1,6 +1,5 @@
 package com.example.googlebookapp.presentation.main.search_book
 
-import com.example.googlebookapp.domain.model.BookModel
 import com.example.googlebookapp.presentation.common.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,7 +8,7 @@ import javax.inject.Inject
 
 
 @InjectViewState
-class SearchBookPresenter @Inject constructor(private val bookModel: BookModel) :
+class SearchBookPresenter @Inject constructor() :
     BasePresenter<SearchBookView>() {
 
     fun loadData(value: String) {

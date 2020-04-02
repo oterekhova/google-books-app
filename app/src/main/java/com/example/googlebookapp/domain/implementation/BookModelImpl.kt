@@ -13,4 +13,12 @@ class BookModelImpl @Inject constructor(private val repository: BookRepository) 
         return repository.request(searchValue)
     }
 
+    override fun removeFromFavourite(bookId: String) {
+
+    }
+
+    override fun addToFavourite(bookId: String) {
+
+    }
+
 }
