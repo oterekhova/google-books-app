@@ -21,4 +21,8 @@ class BookModelImpl @Inject constructor(private val repository: BookRepository) 
 
     }
 
+    override fun getFavouriteList(): Single<ArrayList<BookEntity>> {
+        return repository.request("снегурочка")
+    }
+
 }

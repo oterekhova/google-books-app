@@ -60,7 +60,6 @@ class MainAdapter @Inject constructor() :
                 .load(Uri.parse(book.bookInfo.imageLinks.imageLink))
                 .error(R.drawable.book_image)
                 .into(view.bookImage)
-            view.likeButton.isChecked = false
             view.likeButton.setOnClickListener(onClickListener(book))
         }
 

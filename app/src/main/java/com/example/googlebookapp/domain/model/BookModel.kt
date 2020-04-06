@@ -11,4 +11,6 @@ interface BookModel {
 
     fun removeFromFavourite(bookId: String)
 
+    fun getFavouriteList(): Single<ArrayList<BookEntity>>
+
 }

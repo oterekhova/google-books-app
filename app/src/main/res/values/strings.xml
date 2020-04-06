@@ -6,4 +6,6 @@
     <string name="title">Title</string>
     <string name="image">Image</string>
     <string name="search">Search</string>
+    <string name="tab_search_label">Поиск</string>
+    <string name="tab_favourite_label">Избранное</string>
 </resources>

@@ -1,12 +1,11 @@
-package com.example.googlebookapp.presentation.main.search_book
+package com.example.googlebookapp.presentation.common
 
 import com.example.googlebookapp.data.entity.BookEntity
-import com.example.googlebookapp.presentation.common.BaseView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface SearchBookView : BaseView {
+interface BookView : BaseView {
 
     fun showData(books: ArrayList<BookEntity>)
 

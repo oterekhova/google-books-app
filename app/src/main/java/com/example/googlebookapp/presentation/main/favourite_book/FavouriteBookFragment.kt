@@ -1,9 +1,10 @@
-package com.example.googlebookapp.presentation.main.search_book
+package com.example.googlebookapp.presentation.main.favourite_book
 
 import android.content.Context
 import android.os.Bundle
-import android.view.*
-import androidx.appcompat.widget.SearchView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.googlebookapp.R
 import com.example.googlebookapp.data.entity.BookEntity
@@ -16,14 +17,14 @@ import moxy.presenter.InjectPresenter
 import javax.inject.Inject
 
 
-class SearchBookFragment : BaseFragment(),
+class FavouriteBookFragment : BaseFragment(),
     BookView {
 
     @Inject
     lateinit var mainAdapter: MainAdapter
 
     @InjectPresenter
-    lateinit var searchBookPresenter: SearchBookPresenter
+    lateinit var favouriteBookPresenter: FavouriteBookPresenter
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -45,6 +46,7 @@ class SearchBookFragment : BaseFragment(),
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mainAdapter
         }
+        favouriteBookPresenter.loadData()
     }
 
     override fun showData(books: ArrayList<BookEntity>) {
@@ -55,26 +57,8 @@ class SearchBookFragment : BaseFragment(),
         showMessage(error)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        menu?.let {safeMenu ->
-            inflater?.inflate(R.menu.menu_main, safeMenu)
-            val searchView = safeMenu.findItem(R.id.action_search).actionView as SearchView
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextChange(newText: String): Boolean {
-                    return false
-                }
-
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    searchBookPresenter.loadData(query)
-                    return true
-                }
-            })
-        }
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     companion object {
-        fun newInstance() = SearchBookFragment()
+        fun newInstance() = FavouriteBookFragment()
     }
 
 }
